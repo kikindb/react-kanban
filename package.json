@@ -1,7 +1,8 @@
 {
   "name": "kikindb.kanban",
+  "homepage": "https://kikindb.github.io/react-kanban/",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.3",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",

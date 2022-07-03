@@ -2,3 +2,7 @@
   display: flex;
   flex-flow: row nowrap;
 }
+
+.droppable {
+  background-color: rgba(0, 0, 0, 0.125);
+}

@@ -15,6 +15,9 @@ export default function Navigation() {
           <NavLink to="/">Home</NavLink>
         </li>
         <li className="nav-item">
+          <NavLink to="/backlog">Backlog</NavLink>
+        </li>
+        <li className="nav-item">
           <NavLink to="/login">Login</NavLink>
         </li>
       </ul>

@@ -2,6 +2,7 @@
   display: flex;
   flex-flow: column wrap;
   width: 100%;
+  max-width: 384px;
   height: fit-content;
   cursor: grabbing;
   margin: 0 auto;
@@ -45,4 +46,5 @@
   background-color: transparent;
   border-radius: 0 0 0.5rem 0.5rem;
   padding: 0.5rem;
+  color: rgb(89, 89, 89);
 }

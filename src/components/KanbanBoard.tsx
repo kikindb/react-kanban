@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import KanbanCard from "./KanbanCard";
 import "./KanbanBoard.css";
 import { Task, TaskStatus } from "../models/Task";
 import Column from "./Column";
+import { initLocalStorage, saveTasks } from "../services/tasks.service";
 
 interface KanbanBoardProps {
   kanbanTasks: Task[];
@@ -36,6 +37,14 @@ export default function KanbanBoard(props: KanbanBoardProps) {
       })
     );
   };
+
+  useEffect(() => {
+    initLocalStorage();
+  }, []);
+
+  useEffect(() => {
+    saveTasks(kanbanTasks);
+  }, [kanbanTasks]);
 
   return (
     <div className="kanban-container">

@@ -1,0 +1,41 @@
+.navigation-container {
+  height: 50px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  background-color: #ff5c4d;
+  color: white;
+}
+
+.logo-container img {
+  width: 2rem;
+  color: white;
+}
+
+.logo-container h1 {
+  display: inline-block;
+}
+
+.nav-list {
+  list-style: none;
+  margin-right: 1rem;
+}
+
+.nav-item {
+  display: inline-block;
+  height: 100%;
+}
+
+.nav-item a {
+  color: black;
+  height: 100%;
+  text-decoration: none;
+}
+
+.nav-item:not(:last-of-type) a {
+  margin-right: 1rem;
+}
+
+.nav-item a:hover {
+  text-decoration: underline;
+}

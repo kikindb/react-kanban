@@ -1,0 +1,48 @@
+.card-container {
+  display: flex;
+  flex-flow: column wrap;
+  width: 100%;
+  height: fit-content;
+  cursor: grabbing;
+  margin: 0 auto;
+
+  background: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.card-title {
+  text-align: center;
+  color: white;
+  background-color: transparent;
+  border-radius: 0.5rem 0.5rem 0 0;
+  padding: 0.5rem;
+  background-image: linear-gradient(
+    90deg,
+    hsl(240deg 100% 73%) 0%,
+    hsl(238deg 100% 71%) 10%,
+    hsl(236deg 100% 68%) 20%,
+    hsl(234deg 100% 65%) 30%,
+    hsl(231deg 100% 60%) 40%,
+    hsl(224deg 100% 52%) 50%,
+    hsl(247deg 82% 60%) 60%,
+    hsl(261deg 68% 56%) 70%,
+    hsl(271deg 57% 52%) 80%,
+    hsl(281deg 50% 49%) 90%,
+    hsl(290deg 46% 46%) 100%
+  );
+}
+
+.card-body {
+  background-color: transparent;
+  padding: 0.5rem;
+}
+
+.card-footer {
+  background-color: transparent;
+  border-radius: 0 0 0.5rem 0.5rem;
+  padding: 0.5rem;
+}

@@ -1,0 +1,34 @@
+.column-container {
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100vh;
+  flex: 1;
+}
+
+.column-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+  padding: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.column-body {
+  width: 100%;
+  min-width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-flow: column wrap;
+  gap: 1rem;
+}
+
+.column-item {
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+}
+
+.column-item > div:not(:last-of-type) {
+  margin-bottom: 1rem;
+}

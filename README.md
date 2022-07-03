@@ -2,4 +2,4 @@
 
 Kanban App made with React JS, TypeScript and Vite
 
-Check live example [here](http://localhost:3000/react-kanban/)
+Check live example [here](https://kikindb.github.io/react-kanban/)

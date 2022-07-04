@@ -7,7 +7,7 @@
 }
 
 ::root {
-  --primary-color: #eee;
+  --primary-color: #ff5c4d;
 }
 
 body {
@@ -22,4 +22,38 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+input,
+textarea,
+select {
+  border: 1px solid #909090;
+}
+
+label {
+  font-weight: bold;
+}
+
+input,
+button,
+textarea,
+select {
+  display: block;
+  width: 100%;
+  margin-bottom: 0.5rem;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  font-weight: bold;
+}
+
+button {
+  background-color: #ff5c4d;
+  border: none;
+  color: white;
+  cursor: pointer;
+  margin-top: 1.5rem;
+}
+
+button:hover {
+  background-color: #f45041;
 }

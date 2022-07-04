@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { Task, TaskStatus } from "../models/Task";
 import { addTask } from "../services/tasks.service";
+import Card from "../UI/Card";
 
 export default function Backlog() {
   const inputTitle = useRef<HTMLInputElement>(null);
@@ -25,15 +26,34 @@ export default function Backlog() {
         status: +selectStatus.current?.value,
       };
       addTask(task);
+      clearForm();
     }
   };
 
-  useEffect(() => {
+  const clearForm = () => {
+    if (
+      inputTitle.current &&
+      inputBody.current &&
+      inputAuthor.current &&
+      selectStatus.current
+    ) {
+      inputTitle.current.value = "";
+      inputBody.current.value = "";
+      inputAuthor.current.value = "";
+      focusFirstInput();
+    }
+  };
+
+  const focusFirstInput = () => {
     if (inputTitle.current !== null) inputTitle.current.focus();
+  };
+
+  useEffect(() => {
+    focusFirstInput();
   }, []);
 
   return (
-    <div>
+    <Card>
       <div className="backlog-form-container">
         <form onSubmit={submitHandler}>
           <h2>Create new Task</h2>
@@ -44,6 +64,8 @@ export default function Backlog() {
               name="input-title"
               id="input-title"
               ref={inputTitle}
+              required
+              minLength={3}
             />
           </div>
           <div className="input-container">
@@ -61,6 +83,7 @@ export default function Backlog() {
               name="input-author"
               id="input-author"
               ref={inputAuthor}
+              minLength={3}
             />
           </div>
           <div className="input-container">
@@ -76,6 +99,6 @@ export default function Backlog() {
           </div>
         </form>
       </div>
-    </div>
+    </Card>
   );
 }

@@ -1,19 +1,16 @@
 .navigation-container {
-  height: 50px;
+  min-height: 50px;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
   background-color: #ff5c4d;
   color: white;
+  padding: 0 1rem;
 }
 
-.logo-container {
-  margin-left: 1rem;
-}
-
-.logo-container img {
-  width: 2rem;
-  color: white;
+.logo-container svg {
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
 }
 
 .logo-container h1 {
@@ -22,7 +19,6 @@
 
 .nav-list {
   list-style: none;
-  margin-right: 1rem;
 }
 
 .nav-item {

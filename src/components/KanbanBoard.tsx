@@ -105,6 +105,17 @@ export default function KanbanBoard(props: KanbanBoardProps) {
           })}
         </div>
       </Column>
+      {type !== null && (
+        <div
+          className={`trash-container ${
+            type === TaskStatus.deleted ? dropClass : ""
+          }`}
+          id={`column-${TaskStatus.deleted}`}
+          onDragOver={dragOverHandler}
+          onDrop={dropHandler}
+          onDragLeave={dragLeaveHandler}
+        ></div>
+      )}
     </div>
   );
 }

@@ -2,6 +2,7 @@ export enum TaskStatus {
   todo,
   doing,
   done,
+  deleted,
 }
 
 export interface Task {

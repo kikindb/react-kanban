@@ -16,6 +16,7 @@ export default function LoginBox() {
           <input
             type="email"
             id="usernameInput"
+            data-testid="usernameInput"
             placeholder="Insert your email"
           />
         </div>
@@ -26,11 +27,14 @@ export default function LoginBox() {
           <input
             type="password"
             id="passwordInput"
+            data-testid="passwordInput"
             placeholder="Insert your password"
           />
         </div>
         <div className="submit-container">
-          <button type="submit">Log In</button>
+          <button type="submit" data-testid="submitButton">
+            Log In
+          </button>
         </div>
       </div>
     </Card>

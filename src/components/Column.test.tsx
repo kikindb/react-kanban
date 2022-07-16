@@ -10,6 +10,6 @@ describe("Column tests", () => {
         <Column title="TitleOfColumn" color="red" id="1" />
       </HashRouter>
     );
-    expect(screen.getByText(/TitleOfColumn/i));
+    expect(screen.getByText(/TitleOfColumn/i)).toBeDefined();
   });
 });

@@ -5,7 +5,7 @@ interface ColumnProps {
   id: string;
   title: string;
   color: string;
-  children: JSX.Element;
+  children?: JSX.Element;
 }
 
 export default function Column(props: ColumnProps) {

@@ -56,7 +56,7 @@ export default function KanbanBoard(props: KanbanBoardProps) {
 
   return (
     <div className="kanban-container">
-      <Column id="x0" title="To Do" color="#FFCD58">
+      <Column id="x0" title="To Do" color="#FDC974">
         <div
           id={`column-${TaskStatus.todo}`}
           className={`column-item todo-container ${
@@ -73,7 +73,7 @@ export default function KanbanBoard(props: KanbanBoardProps) {
         </div>
       </Column>
 
-      <Column id="x1" title="Doing" color="#FF9636">
+      <Column id="x1" title="Doing" color="#f98468">
         <div
           id={`column-${TaskStatus.doing}`}
           className={`column-item todo-container ${
@@ -89,7 +89,7 @@ export default function KanbanBoard(props: KanbanBoardProps) {
           })}
         </div>
       </Column>
-      <Column id="x3" title="Done" color="#DAD870">
+      <Column id="x3" title="Done" color="#fa3463">
         <div
           id={`column-${TaskStatus.done}`}
           className={`column-item todo-container ${

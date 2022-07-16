@@ -13,13 +13,21 @@ export default function LoginBox() {
           <label htmlFor="usernameInput" placeholder="Type your email">
             Email{" "}
           </label>
-          <input type="email" id="usernameInput" />
+          <input
+            type="email"
+            id="usernameInput"
+            placeholder="Insert your email"
+          />
         </div>
         <div className="input-container">
           <label htmlFor="passwordInput" placeholder="Type your password">
             Password{" "}
           </label>
-          <input type="password" id="passwordInput" />
+          <input
+            type="password"
+            id="passwordInput"
+            placeholder="Insert your password"
+          />
         </div>
         <div className="submit-container">
           <button type="submit">Log In</button>

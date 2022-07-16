@@ -66,6 +66,7 @@ export default function Backlog() {
               ref={inputTitle}
               required
               minLength={3}
+              placeholder="Insert task title"
             />
           </div>
           <div className="input-container">
@@ -74,6 +75,7 @@ export default function Backlog() {
               name="input-container"
               id="input-body"
               ref={inputBody}
+              placeholder="Insert the body of the task"
             ></textarea>
           </div>
           <div className="input-container">
@@ -84,6 +86,7 @@ export default function Backlog() {
               id="input-author"
               ref={inputAuthor}
               minLength={3}
+              placeholder="Insert task author"
             />
           </div>
           <div className="input-container">
@@ -95,7 +98,7 @@ export default function Backlog() {
             </select>
           </div>
           <div className="btn-container">
-            <button type="submit">Submit</button>
+            <button type="submit">Add Task</button>
           </div>
         </form>
       </div>

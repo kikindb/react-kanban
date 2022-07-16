@@ -6,7 +6,7 @@ export default function LoginBox() {
   return (
     <Card>
       <header className="form-header">
-        <h1>Log In</h1>
+        <h1>Welcome!</h1>
       </header>
       <div className="form-container">
         <div className="input-container">

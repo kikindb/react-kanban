@@ -11,6 +11,7 @@ describe("LoginBox Tests", () => {
       </HashRouter>
     );
     expect(screen.getByRole("heading")).toBeDefined();
+    expect(screen.getByText(/Welcome!/i)).toBeDefined();
   });
 
   it("should display email input", () => {

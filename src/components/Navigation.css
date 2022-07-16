@@ -41,6 +41,7 @@
   display: block;
   line-height: 2.5rem;
   text-underline-offset: 0.5rem;
+  transition: all 150ms ease-in-out;
 }
 
 .nav-item a.active {

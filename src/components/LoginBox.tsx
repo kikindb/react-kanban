@@ -1,7 +1,7 @@
 import { AnyAction } from "@reduxjs/toolkit";
 import React, { FormEvent, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { authActions } from "./../store/index";
+import { authActions } from "./../store/auth";
 import Card from "../UI/Card";
 import "./LoginBox.css";
 

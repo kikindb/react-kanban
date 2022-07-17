@@ -5,7 +5,7 @@ import "./Navigation.css";
 import LogoSVG from "./Logo";
 import data from "./../../package.json";
 import { AnyAction } from "@reduxjs/toolkit";
-import { authActions } from "./../store/index";
+import { authActions } from "./../store/auth";
 
 export default function Navigation() {
   const dispatch = useDispatch();

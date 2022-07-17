@@ -1,6 +1,6 @@
 import { Task, TaskStatus } from "../models/Task";
 
-const taskObj: Task = {
+export const taskObj: Task = {
   id: "1",
   title: "Learn React JS",
   body: "Watch Udemy courses",
@@ -45,7 +45,7 @@ const taskObj5: Task = {
   status: TaskStatus.todo,
 };
 
-const tasksArray = [taskObj, taskObj2, taskObj3, taskObj4, taskObj5];
+export const tasksArray = [taskObj, taskObj2, taskObj3, taskObj4, taskObj5];
 
 export function initLocalStorage(): void {
   if (localStorage.getItem("tasks") === null) saveTasks(tasksArray);

@@ -1,6 +1,10 @@
 import React from "react";
 import { HashRouter, Routes, Route } from "react-router-dom";
 
+// Middlewares
+import RequireAuth from "../middlewares/RequireAuth";
+
+// Pages
 import Backlog from "./../pages/Backlog";
 import Home from "./../pages/Home";
 import Login from "./../pages/Login";
@@ -13,8 +17,22 @@ export default function AppRoutes() {
     <HashRouter>
       <Routes>
         <Route path="/" element={<App />}>
-          <Route index element={<Home />} />
-          <Route path="backlog" element={<Backlog />} />
+          <Route
+            index
+            element={
+              <RequireAuth>
+                <Home />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="backlog"
+            element={
+              <RequireAuth>
+                <Backlog />
+              </RequireAuth>
+            }
+          />
           <Route path="login" element={<Login />} />
         </Route>
         <Route path="*" element={<NotFound />} />

@@ -31,10 +31,12 @@ input,
 textarea,
 select {
   border: 1px solid #909090;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 label {
   font-weight: bold;
+  margin-bottom: 0.25rem;
 }
 
 input,

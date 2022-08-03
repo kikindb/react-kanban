@@ -11,6 +11,7 @@ import Login from "./../pages/Login";
 import NotFound from "./../pages/NotFound";
 
 import App from "./../App";
+import SignIn from "../pages/SignIn";
 
 export default function AppRoutes() {
   return (
@@ -34,6 +35,7 @@ export default function AppRoutes() {
             }
           />
           <Route path="login" element={<Login />} />
+          <Route path="signin" element={<SignIn />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

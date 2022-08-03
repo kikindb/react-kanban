@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { AnyAction } from "@reduxjs/toolkit";
 import React, { FormEvent, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -26,9 +27,7 @@ export default function LoginBox() {
         <div className="form-container">
           <form onSubmit={loginHandler}>
             <div className="input-container">
-              <label htmlFor="usernameInput" placeholder="Type your email">
-                Email{" "}
-              </label>
+              <label htmlFor="usernameInput">Email </label>
               <input
                 type="email"
                 id="usernameInput"
@@ -38,9 +37,7 @@ export default function LoginBox() {
               />
             </div>
             <div className="input-container">
-              <label htmlFor="passwordInput" placeholder="Type your password">
-                Password{" "}
-              </label>
+              <label htmlFor="passwordInput">Password </label>
               <input
                 type="password"
                 id="passwordInput"
@@ -53,6 +50,9 @@ export default function LoginBox() {
               <button type="submit" data-testid="submitButton">
                 Log In
               </button>
+            </div>
+            <div>
+              <Link to="/signin">Sign In</Link>
             </div>
           </form>
         </div>

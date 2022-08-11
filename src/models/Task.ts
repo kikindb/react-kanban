@@ -10,6 +10,6 @@ export interface Task {
   title: string;
   body: string;
   author: string;
-  date: string;
+  createdAt: string;
   status: TaskStatus;
 }

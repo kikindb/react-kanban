@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import KanbanCard from "./KanbanCard";
 import "./KanbanBoard.css";
 import { Task, TaskStatus } from "../models/Task";
 import Column from "./Column";
-import { initLocalStorage, saveTasks } from "../services/tasks.service";
+import { patchTask } from "../services/tasks.service";
 
 interface KanbanBoardProps {
   kanbanTasks: Task[];
@@ -11,34 +11,48 @@ interface KanbanBoardProps {
 
 export default function KanbanBoard(props: KanbanBoardProps) {
   const [kanbanTasks, setKanbanTasks] = useState<Task[]>(props.kanbanTasks);
-  const [type, setType] = useState<TaskStatus | null>(null);
+  const [overStatusSelected, setOverStatusSelected] =
+    useState<TaskStatus | null>(null);
   const dropClass = "droppable";
 
   const dragOverHandler = (event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
     if (event.dataTransfer && event.dataTransfer.types[0] === "text/plain") {
-      event.preventDefault();
-      console.log(event);
-      setType(+event.currentTarget.id.replace("column-", ""));
-      console.log("DRAGOVERHANDLER.....");
+      if (
+        overStatusSelected !== +event.currentTarget.id.replace("column-", "")
+      ) {
+        console.log(event);
+        setOverStatusSelected(+event.currentTarget.id.replace("column-", ""));
+        console.log("DRAGOVERHANDLER.....");
+      }
     }
   };
 
   const dropHandler = (event: React.DragEvent) => {
     event.preventDefault();
     const taskId = event.dataTransfer!.getData("text/plain");
-    console.log(`dropped: ${taskId} in ${event.currentTarget.id}`);
+    const patchedTask = kanbanTasks.filter((task) => task.id == taskId);
+
+    if (patchedTask[0].status === overStatusSelected) {
+      setOverStatusSelected(null);
+      return;
+    }
+
+    console.log("dropHandler:");
+    console.log(
+      `dropped: task with id: ${taskId} in ${event.currentTarget.id}`
+    );
     console.log(event);
     console.log("..........");
 
-    setKanbanTasks((prevKanbanTasks) => {
-      return prevKanbanTasks.map((task) => {
-        if (task.id === taskId && type !== null) {
-          return { ...task, status: type };
-        }
-        return task;
-      });
-    });
-    setType(null);
+    const token = JSON.parse(window.localStorage.getItem("authData")!).token;
+
+    console.log({ patchedTask });
+
+    patchedTask[0].status = overStatusSelected ?? 0;
+    patchTask(patchedTask[0], token);
+
+    setOverStatusSelected(null);
   };
 
   const dragLeaveHandler = (event: React.DragEvent) => {
@@ -46,21 +60,13 @@ export default function KanbanBoard(props: KanbanBoardProps) {
     console.log(`DragLeave`);
   };
 
-  useEffect(() => {
-    initLocalStorage();
-  }, []);
-
-  useEffect(() => {
-    saveTasks(kanbanTasks);
-  }, [kanbanTasks]);
-
   return (
     <div className="kanban-container">
       <Column id="x0" title="To Do" color="#FDC974">
         <div
           id={`column-${TaskStatus.todo}`}
           className={`column-item todo-container ${
-            type === TaskStatus.todo ? dropClass : ""
+            overStatusSelected === TaskStatus.todo ? dropClass : ""
           }`}
           onDragOver={dragOverHandler}
           onDrop={dropHandler}
@@ -77,7 +83,7 @@ export default function KanbanBoard(props: KanbanBoardProps) {
         <div
           id={`column-${TaskStatus.doing}`}
           className={`column-item todo-container ${
-            type === TaskStatus.doing ? dropClass : ""
+            overStatusSelected === TaskStatus.doing ? dropClass : ""
           }`}
           onDragOver={dragOverHandler}
           onDrop={dropHandler}
@@ -93,7 +99,7 @@ export default function KanbanBoard(props: KanbanBoardProps) {
         <div
           id={`column-${TaskStatus.done}`}
           className={`column-item todo-container ${
-            type === TaskStatus.done ? dropClass : ""
+            overStatusSelected === TaskStatus.done ? dropClass : ""
           }`}
           onDragOver={dragOverHandler}
           onDrop={dropHandler}
@@ -105,10 +111,10 @@ export default function KanbanBoard(props: KanbanBoardProps) {
           })}
         </div>
       </Column>
-      {type !== null && (
+      {overStatusSelected !== null && (
         <div
           className={`trash-container ${
-            type === TaskStatus.deleted ? dropClass : ""
+            overStatusSelected === TaskStatus.deleted ? dropClass : ""
           }`}
           id={`column-${TaskStatus.deleted}`}
           onDragOver={dragOverHandler}

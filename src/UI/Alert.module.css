@@ -1,0 +1,29 @@
+.Alert {
+  width: 100%;
+  padding: 1rem;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.alertTitle {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.alertBody {
+  text-transform: capitalize;
+}
+
+.danger {
+  color: white;
+  background-color: var(--accent-color);
+}
+
+.info {
+  color: white;
+  background-color: var(--primary-color);
+}
+
+.warning {
+  color: var(--black-color);
+  background-color: var(--warning-color);
+}

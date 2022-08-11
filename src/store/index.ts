@@ -1,9 +1,10 @@
-import { AnyAction, configureStore } from "@reduxjs/toolkit";
-import authReducer, { authActions } from "./auth";
-import tasksReducer, { tasksActions } from "./tasks";
+import { configureStore } from "@reduxjs/toolkit";
+import authReducer from "./auth";
+import tasksReducer from "./tasks";
+import alertReducer from "./alert";
 
 const store = configureStore({
-  reducer: { tasks: tasksReducer, auth: authReducer },
+  reducer: { tasks: tasksReducer, auth: authReducer, alert: alertReducer },
 });
 
 export default store;

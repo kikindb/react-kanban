@@ -9,9 +9,10 @@ import { authActions } from "./../store/auth";
 
 export default function Navigation() {
   const dispatch = useDispatch();
-  const isAuth = useSelector((state: AnyAction) => state.auth.isAuthenticated);
+  const isAuth = useSelector((state: AnyAction) => state.auth.authData);
 
   const logoutHandler = () => {
+    window.localStorage.removeItem("authData");
     dispatch(authActions.logout());
   };
 
@@ -24,7 +25,7 @@ export default function Navigation() {
         </h1>
       </div>
       <ul className="nav-list">
-        {isAuth && (
+        {isAuth.token && (
           <>
             <li className="nav-item">
               <NavLink to="./">Home</NavLink>
@@ -43,11 +44,11 @@ export default function Navigation() {
               </button>
             </li>
             <li className="nav-item">
-              <a>User</a>
+              <a>{isAuth.name}</a>
             </li>
           </>
         )}
-        {!isAuth && (
+        {!isAuth.token && (
           <li className="nav-item">
             <NavLink to="./login">Login</NavLink>
           </li>

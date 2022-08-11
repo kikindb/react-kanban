@@ -1,21 +1,40 @@
-import { Link } from "react-router-dom";
-import { AnyAction } from "@reduxjs/toolkit";
 import React, { FormEvent, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { AnyAction } from "@reduxjs/toolkit";
 import { authActions } from "./../store/auth";
+import { alertActions } from "../store/alert";
+import { AlertType } from "../UI/Alert";
 import Card from "../UI/Card";
 import "./LoginBox.css";
+import { authByPassword } from "../services/auth.service";
 
 export default function LoginBox() {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
   const dispatch = useDispatch();
-  const isAuth = useSelector((state: AnyAction) => state.auth.isAuthenticated);
+  const isAuth = useSelector((state: AnyAction) => state.auth.authData);
 
-  const loginHandler = (event: FormEvent) => {
+  const loginHandler = async (event: FormEvent) => {
     event.preventDefault;
-    dispatch(authActions.login());
+    authByPassword(emailRef.current?.value!, passwordRef.current?.value!)
+      .then((data) => {
+        console.log(data);
+        window.localStorage.setItem("authData", JSON.stringify(data));
+        dispatch(authActions.login(data));
+      })
+      .catch((error) => {
+        console.error(error.message);
+        dispatch(
+          alertActions.setAlert({
+            title: "Login Failed",
+            body: error.message,
+            type: AlertType.danger,
+            show: true,
+          })
+        );
+      });
   };
 
   return (
@@ -23,40 +42,41 @@ export default function LoginBox() {
       <header className="form-header">
         <h1>Welcome!</h1>
       </header>
-      {!isAuth && (
-        <div className="form-container">
-          <form onSubmit={loginHandler}>
-            <div className="input-container">
-              <label htmlFor="usernameInput">Email </label>
-              <input
-                type="email"
-                id="usernameInput"
-                data-testid="usernameInput"
-                placeholder="Insert your email"
-                ref={emailRef}
-              />
-            </div>
-            <div className="input-container">
-              <label htmlFor="passwordInput">Password </label>
-              <input
-                type="password"
-                id="passwordInput"
-                data-testid="passwordInput"
-                placeholder="Insert your password"
-                ref={passwordRef}
-              />
-            </div>
-            <div className="submit-container">
-              <button type="submit" data-testid="submitButton">
-                Log In
-              </button>
-            </div>
-            <div>
-              <Link to="/signin">Sign In</Link>
-            </div>
-          </form>
-        </div>
-      )}
+      <div className="form-container">
+        <form onSubmit={loginHandler}>
+          <div className="input-container">
+            <label htmlFor="usernameInput">Email </label>
+            <input
+              type="email"
+              id="usernameInput"
+              data-testid="usernameInput"
+              placeholder="Insert your email"
+              ref={emailRef}
+              required
+            />
+          </div>
+          <div className="input-container">
+            <label htmlFor="passwordInput">Password </label>
+            <input
+              type="password"
+              id="passwordInput"
+              data-testid="passwordInput"
+              placeholder="Insert your password"
+              ref={passwordRef}
+              minLength={5}
+              required
+            />
+          </div>
+          <div className="submit-container">
+            <button type="submit" data-testid="submitButton">
+              Log In
+            </button>
+          </div>
+          <div>
+            <Link to="/signin">Sign In</Link>
+          </div>
+        </form>
+      </div>
     </Card>
   );
 }

@@ -29,9 +29,11 @@ export default function KanbanCard(props: KanbanCardProps) {
   const [cardTransform, setCardTransform] = useState<string>("");
 
   const onDragStartHandler = (event: React.DragEvent<HTMLDivElement>) => {
-    console.log(`onDragStartHandler`);
     event.dataTransfer!.setData("text/plain", data.id);
     event.dataTransfer!.effectAllowed = "move";
+    setTimeout(() => {
+      currentCard.current?.classList.add("hide");
+    }, 0);
   };
 
   const moveHandler = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -54,6 +56,10 @@ export default function KanbanCard(props: KanbanCardProps) {
     setCardTransform("");
   };
 
+  const onDragEndHandler = (event: React.DragEvent<HTMLDivElement>) => {
+    currentCard.current?.classList.remove("hide");
+  };
+
   useEffect(() => {
     const { width, height } = currentCard!.current!.getBoundingClientRect();
     setCardValues({
@@ -69,7 +75,7 @@ export default function KanbanCard(props: KanbanCardProps) {
       id={data.id}
       className="card-container"
       onDragStart={onDragStartHandler}
-      onDragEnd={() => console.log(`dragend: ${data.id}`)}
+      onDragEnd={onDragEndHandler}
       draggable
       onMouseMove={moveHandler}
       onMouseLeave={leaveHandler}
@@ -84,7 +90,7 @@ export default function KanbanCard(props: KanbanCardProps) {
       </div>
       <div className="card-footer">
         <p>
-          {data.author} - {data.date}
+          {data.author} - {data.createdAt}
         </p>
       </div>
     </div>

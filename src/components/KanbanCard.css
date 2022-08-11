@@ -45,3 +45,7 @@
   padding: 0.5rem;
   color: rgb(89, 89, 89);
 }
+
+.card-container.hide {
+  display: none;
+}

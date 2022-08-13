@@ -2,7 +2,7 @@ import { AnyAction } from "@reduxjs/toolkit";
 import React, { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { Task, TaskStatus } from "../models/Task";
-import { addTask, saveTask } from "../services/tasks.service";
+import { saveTask } from "../services/tasks.service";
 import Card from "../UI/Card";
 import { Helmet } from "react-helmet";
 
@@ -29,7 +29,6 @@ export default function Backlog() {
         createdAt: new Date().toDateString(),
         status: +selectStatus.current?.value,
       };
-      addTask(task);
       saveTask(task, authData.token);
       clearForm();
     }

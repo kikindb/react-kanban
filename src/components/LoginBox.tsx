@@ -1,7 +1,6 @@
 import React, { FormEvent, useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { AnyAction } from "@reduxjs/toolkit";
 import { authActions } from "./../store/auth";
 import { alertActions } from "../store/alert";
 import { AlertType } from "../UI/Alert";
@@ -14,27 +13,28 @@ export default function LoginBox() {
   const passwordRef = useRef<HTMLInputElement>(null);
 
   const dispatch = useDispatch();
-  const isAuth = useSelector((state: AnyAction) => state.auth.authData);
 
   const loginHandler = async (event: FormEvent) => {
-    event.preventDefault;
-    authByPassword(emailRef.current?.value!, passwordRef.current?.value!)
-      .then((data) => {
-        console.log(data);
-        window.localStorage.setItem("authData", JSON.stringify(data));
-        dispatch(authActions.login(data));
-      })
-      .catch((error) => {
-        console.error(error.message);
-        dispatch(
-          alertActions.setAlert({
-            title: "Login Failed",
-            body: error.message,
-            type: AlertType.danger,
-            show: true,
-          })
-        );
-      });
+    event.preventDefault();
+    try {
+      const data = await authByPassword(
+        emailRef.current?.value!,
+        passwordRef.current?.value!
+      );
+      console.log(data);
+      window.localStorage.setItem("authData", JSON.stringify(data));
+      dispatch(authActions.login(data));
+    } catch (error: any) {
+      console.error(error.message);
+      dispatch(
+        alertActions.setAlert({
+          title: "Login Failed",
+          body: "" + error.message,
+          type: AlertType.danger,
+          show: true,
+        })
+      );
+    }
   };
 
   return (

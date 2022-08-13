@@ -1,6 +1,6 @@
 const apiUrl = `${import.meta.env.VITE_APP_API_URL}auth/`;
 
-export const authByPassword = async (email: string, password: string) => {
+export async function authByPassword(email: string, password: string) {
   try {
     const response = await fetch(apiUrl, {
       method: "POST",
@@ -23,4 +23,4 @@ export const authByPassword = async (email: string, password: string) => {
   } catch (error: any) {
     throw new Error(error);
   }
-};
+}

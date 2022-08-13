@@ -31,21 +31,6 @@ export async function getTasks(token: string) {
   return tasksArr;
 }
 
-export function addTask(task: Task): void {
-  // const newTasks = getTasks();
-  // newTasks.push(task);
-  // saveTasks(newTasks);
-  console.log("Task created");
-}
-
-export function saveTasks(tasks: Task[]) {
-  try {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  } catch (error) {
-    console.error(error);
-  }
-}
-
 export async function saveTask(task: Task, token: string) {
   try {
     const response = await fetch(apiUrl, {

@@ -9,9 +9,10 @@ export default function Login() {
   const location: any = useLocation();
   const from = location.state?.from?.pathname || "/";
 
-  if (isAuth.token) {
+  if (isAuth?.token) {
     return <Navigate to={from} state={{ from: location }} replace />;
   }
+
   return (
     <>
       <Helmet>

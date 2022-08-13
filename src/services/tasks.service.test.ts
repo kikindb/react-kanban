@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeAll } from "vitest";
-import { taskObj, saveTasks, getTasks, addTask } from "./tasks.service";
+import { taskObj, getTasks } from "./tasks.service";
 
 const fakeLocalStorage = (function () {
   let store = {} as any;
@@ -20,6 +20,12 @@ const fakeLocalStorage = (function () {
   };
 })();
 
+const fakeFetch = (function () {
+  let fetch = {} as any;
+
+  return {};
+})();
+
 describe("Tasks Service", () => {
   beforeAll(() => {
     Object.defineProperty(window, "localStorage", {
@@ -27,14 +33,23 @@ describe("Tasks Service", () => {
     });
   });
 
-  it("should save tasks to localstorage", () => {
+  it("should fetch tasks", async () => {
+    // const fetchMock = vi
+    //   .spyOn(global, "fetch")
+    //   .mockImplementation(() =>
+    //     Promise.resolve({ json: () => Promise.resolve([]) })
+    //   );
+    const tasks = await getTasks("testtoken");
+  });
+
+  /*it("should save tasks to localstorage", () => {
     saveTasks([taskObj]);
     expect(window.localStorage.getItem("tasks")).toEqual(
       JSON.stringify([taskObj])
     );
-  });
+  });*/
 
-  it("should get tasks from localstorage", () => {
+  /*it("should get tasks from localstorage", () => {
     saveTasks([taskObj]);
     const tasks = getTasks();
     expect(tasks.length).toBe(1);
@@ -47,5 +62,5 @@ describe("Tasks Service", () => {
     expect(tasks.length).toBe(2);
     expect(tasks[0]).toMatchObject(taskObj);
     expect(tasks[1]).toMatchObject(taskObj);
-  });
+  });*/
 });

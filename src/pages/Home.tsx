@@ -1,27 +1,11 @@
-import { AnyAction } from "@reduxjs/toolkit";
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import KanbanBoard from "../components/KanbanBoard";
 import Loading from "../components/Loading";
-import { Task } from "../models/Task";
-import { getTasks } from "../services/tasks.service";
 import { Helmet } from "react-helmet";
+import useTasks from "../hooks/useTasks";
 
 export default function Home() {
-  const authData = useSelector((state: AnyAction) => state.auth.authData);
-  const [tasksList, setTasksList] = useState<Task[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function getData() {
-      const res = await getTasks(authData.token);
-      console.log("HOME!");
-      console.log(res);
-      setTasksList(res);
-      setLoading(false);
-    }
-    getData();
-  }, [authData]);
+  console.log("rendering Home...");
+  const [tasksList, loading] = useTasks();
 
   return (
     <>

@@ -1,7 +1,7 @@
 import "./App.css";
 import Navigation from "./components/Navigation";
 import { Outlet } from "react-router-dom";
-import Alert, { AlertType } from "./UI/Alert";
+import Alert from "./UI/Alert";
 import { useSelector } from "react-redux";
 import { AnyAction } from "@reduxjs/toolkit";
 

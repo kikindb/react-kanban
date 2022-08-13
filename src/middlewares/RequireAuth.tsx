@@ -20,7 +20,8 @@ export default function RequireAuth(
     }
   }, [dispatch]);
 
-  if (!isAuth.token) {
+  // TODO: is failing when you come from login and you log in successfully
+  if (!isAuth?.token) {
     console.log("no user!!");
     // Redirect them to the /login page, but save the current location they were
     // trying to go to when they were redirected. This allows us to send them

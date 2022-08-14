@@ -3,11 +3,9 @@ import { AnyAction } from "@reduxjs/toolkit";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { authActions } from "../store/auth";
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 
-export default function RequireAuth(
-  props: React.PropsWithChildren
-): React.ReactElement {
+export default function RequireAuth(): React.ReactElement {
   const dispatch = useDispatch();
   const isAuth = useSelector((state: AnyAction) => state.auth.authData);
   const location = useLocation();
@@ -30,5 +28,5 @@ export default function RequireAuth(
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
-  return <>{props.children}</>;
+  return <Outlet />;
 }

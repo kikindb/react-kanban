@@ -43,7 +43,6 @@ export default function Backlog() {
     ) {
       inputTitle.current.value = "";
       inputBody.current.value = "";
-      inputAuthor.current.value = "";
       focusFirstInput();
     }
   };
@@ -99,6 +98,7 @@ export default function Backlog() {
                 minLength={3}
                 required
                 placeholder="Insert task author"
+                disabled
               />
             </div>
             <div className="input-container">

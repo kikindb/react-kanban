@@ -1,4 +1,4 @@
-import React from "react";
+import { lazy } from "react";
 import { HashRouter, Routes, Route } from "react-router-dom";
 
 // Middlewares
@@ -13,11 +13,22 @@ import NotFound from "./../pages/NotFound";
 import App from "./../App";
 import SignIn from "../pages/SignIn";
 
+const ROUTES = {
+  PUBLIC: {
+    LOGIN: "login",
+    SIGNIN: "signin",
+  },
+  PRIVATE: {
+    HOME: "/",
+    BACKLOG: "backlog",
+  },
+};
+
 export default function AppRoutes() {
   return (
     <HashRouter>
       <Routes>
-        <Route path="/" element={<App />}>
+        <Route path={ROUTES.PRIVATE.HOME} element={<App />}>
           <Route
             index
             element={
@@ -27,15 +38,15 @@ export default function AppRoutes() {
             }
           />
           <Route
-            path="backlog"
+            path={ROUTES.PRIVATE.BACKLOG}
             element={
               <RequireAuth>
                 <Backlog />
               </RequireAuth>
             }
           />
-          <Route path="login" element={<Login />} />
-          <Route path="signin" element={<SignIn />} />
+          <Route path={ROUTES.PUBLIC.LOGIN} element={<Login />} />
+          <Route path={ROUTES.PUBLIC.SIGNIN} element={<SignIn />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

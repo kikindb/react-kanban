@@ -1,15 +1,21 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import KanbanCard from "./KanbanCard";
 import "./KanbanBoard.css";
 import { Task, TaskStatus } from "../models/Task";
 import Column from "./Column";
 import { patchTask } from "../services/tasks.service";
+import { AnyAction } from "@reduxjs/toolkit";
+import { AuthData } from "../models/Auth";
 
 interface KanbanBoardProps {
   kanbanTasks: Task[];
 }
 
 export default function KanbanBoard(props: KanbanBoardProps) {
+  const isAuth = useSelector(
+    (state: AnyAction) => state.auth.authData
+  ) as AuthData;
   const [kanbanTasks, setKanbanTasks] = useState<Task[]>(props.kanbanTasks);
   const [overStatusSelected, setOverStatusSelected] =
     useState<TaskStatus | null>(null);
@@ -45,7 +51,7 @@ export default function KanbanBoard(props: KanbanBoardProps) {
     console.log(event);
     console.log("..........");
 
-    const token = JSON.parse(window.localStorage.getItem("authData")!).token;
+    const token = isAuth.token;
 
     console.log({ patchedTask });
 

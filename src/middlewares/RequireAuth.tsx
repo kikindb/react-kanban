@@ -1,26 +1,17 @@
 import React from "react";
 import { AnyAction } from "@reduxjs/toolkit";
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { authActions, authKey } from "../store/auth";
+import { useSelector } from "react-redux";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { ROUTES } from "../routes/AppRoutes";
+import { AuthData } from "../models/Auth";
 
 export default function RequireAuth(): React.ReactElement {
-  const dispatch = useDispatch();
-  const isAuth = useSelector((state: AnyAction) => state.auth.authData);
+  const isAuth = useSelector(
+    (state: AnyAction) => state.auth.authData
+  ) as AuthData;
   const location = useLocation();
-  const authData = JSON.parse(window.localStorage.getItem(authKey) as string);
 
-  useEffect(() => {
-    if (authData) {
-      console.log("authData Exists: ", authData);
-      dispatch(authActions.login(authData));
-    }
-  }, [dispatch]);
-
-  // TODO: is failing when you come from login and you log in successfully
-  if (!isAuth?.token) {
+  if (!isAuth.token) {
     console.log("no user!!");
     // Redirect them to the /login page, but save the current location they were
     // trying to go to when they were redirected. This allows us to send them

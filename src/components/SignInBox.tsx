@@ -29,7 +29,6 @@ export default function SignInBox() {
       const data = await response.json();
       data.image = null;
       data.token = response.headers.get("x-auth-token");
-      window.localStorage.setItem("authData", JSON.stringify(data));
       dispatch(authActions.login(data));
 
       console.log(data);

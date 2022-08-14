@@ -44,7 +44,7 @@ export default function SignInBox() {
         <h1>Sign In</h1>
       </header>
       <div className="form-container">
-        <form onSubmit={signInHandler}>
+        <form onSubmit={signInHandler} autoComplete="new-password">
           <div className="input-container">
             <label htmlFor="nameInput">Name </label>
             <input

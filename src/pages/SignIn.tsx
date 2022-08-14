@@ -1,8 +1,7 @@
-import React from "react";
 import { AnyAction } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 import { useLocation, Navigate } from "react-router-dom";
-import SignUpBox from "../components/SignInBox";
+import SignInBox from "../components/SignInBox";
 import { Helmet } from "react-helmet";
 
 export default function SignIn() {
@@ -19,7 +18,7 @@ export default function SignIn() {
         <title>Kanban App - Sign In</title>
       </Helmet>
       <div>
-        <SignUpBox />
+        <SignInBox />
       </div>
     </>
   );

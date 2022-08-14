@@ -21,8 +21,6 @@ export default function LoginBox() {
         emailRef.current?.value!,
         passwordRef.current?.value!
       );
-      console.log(data);
-      window.localStorage.setItem("authData", JSON.stringify(data));
       dispatch(authActions.login(data));
     } catch (error: any) {
       console.error(error.message);

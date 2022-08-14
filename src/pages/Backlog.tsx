@@ -1,12 +1,15 @@
 import { AnyAction } from "@reduxjs/toolkit";
 import React, { useEffect, useRef } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Task, TaskStatus } from "../models/Task";
 import { saveTask } from "../services/tasks.service";
 import Card from "../UI/Card";
 import { Helmet } from "react-helmet";
+import { alertActions } from "../store/alert";
+import { AlertType } from "../UI/Alert";
 
 export default function Backlog() {
+  const dispatch = useDispatch();
   const authData = useSelector((state: AnyAction) => state.auth.authData);
   const inputTitle = useRef<HTMLInputElement>(null);
   const inputBody = useRef<HTMLTextAreaElement>(null);
@@ -31,6 +34,14 @@ export default function Backlog() {
       };
       saveTask(task, authData.token);
       clearForm();
+      dispatch(
+        alertActions.setAlert({
+          title: "Task Created",
+          body: "Your task was created successfully",
+          type: AlertType.info,
+          show: true,
+        })
+      );
     }
   };
 

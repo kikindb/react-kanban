@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { AlertModel } from "../models/Alert";
 import { AlertType } from "../UI/Alert";
 
-const initialAlertState = {
+const initialAlertState: AlertModel = {
   alertData: {
     title: "",
     body: "",

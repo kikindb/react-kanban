@@ -1,4 +1,3 @@
-import React, { FormEvent } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import "./Navigation.css";
@@ -6,13 +5,13 @@ import LogoSVG from "./Logo";
 import data from "./../../package.json";
 import { AnyAction } from "@reduxjs/toolkit";
 import { authActions } from "./../store/auth";
+import { ROUTES } from "./../routes/AppRoutes";
 
 export default function Navigation() {
   const dispatch = useDispatch();
   const isAuth = useSelector((state: AnyAction) => state.auth.authData);
 
   const logoutHandler = () => {
-    window.localStorage.removeItem("authData");
     dispatch(authActions.logout());
   };
 
@@ -25,13 +24,13 @@ export default function Navigation() {
         </h1>
       </div>
       <ul className="nav-list">
-        {isAuth.token && (
+        {isAuth?.token && (
           <>
             <li className="nav-item">
-              <NavLink to="./">Home</NavLink>
+              <NavLink to={ROUTES.PRIVATE.HOME}>Home</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to="./backlog">Backlog</NavLink>
+              <NavLink to={ROUTES.PRIVATE.BACKLOG}>Backlog</NavLink>
             </li>
             <li className="nav-item">
               <button
@@ -50,7 +49,7 @@ export default function Navigation() {
         )}
         {!isAuth.token && (
           <li className="nav-item">
-            <NavLink to="./login">Login</NavLink>
+            <NavLink to={ROUTES.PUBLIC.LOGIN}>Login</NavLink>
           </li>
         )}
       </ul>

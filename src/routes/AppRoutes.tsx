@@ -6,6 +6,7 @@ import RequireAuth from "../middlewares/RequireAuth";
 
 // Pages
 import Backlog from "./../pages/Backlog";
+// const Backlog = lazy(() => import("./../pages/Backlog"));
 import Home from "./../pages/Home";
 import Login from "./../pages/Login";
 import NotFound from "./../pages/NotFound";
@@ -13,7 +14,7 @@ import NotFound from "./../pages/NotFound";
 import App from "./../App";
 import SignIn from "../pages/SignIn";
 
-const ROUTES = {
+export const ROUTES = {
   PUBLIC: {
     LOGIN: "login",
     SIGNIN: "signin",

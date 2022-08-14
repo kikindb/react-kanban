@@ -1,6 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { AuthData, AuthModel } from "../models/Auth";
+import {
+  persistLocalStorage,
+  clearLocalStorage,
+} from "../utils/localstorage.util";
 
-const initialAuthState = {
+const initialAuthState: AuthModel = {
   authData: {
     id: "",
     name: "",
@@ -10,21 +15,21 @@ const initialAuthState = {
   },
 };
 
+export const authKey = "authData";
+
 const authSlice = createSlice({
   name: "auth",
-  initialState: initialAuthState,
+  initialState: localStorage.getItem(authKey)
+    ? { authData: JSON.parse(localStorage.getItem(authKey) as string) }
+    : initialAuthState,
   reducers: {
     login(state, action) {
+      persistLocalStorage<AuthData>(authKey, action.payload);
       state.authData = action.payload;
     },
-    logout(state) {
-      state.authData = {
-        id: "",
-        name: "",
-        email: "",
-        image: null,
-        token: "",
-      };
+    logout() {
+      clearLocalStorage(authKey);
+      return initialAuthState;
     },
   },
 });

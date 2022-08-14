@@ -2,14 +2,15 @@ import React from "react";
 import { AnyAction } from "@reduxjs/toolkit";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { authActions } from "../store/auth";
+import { authActions, authKey } from "../store/auth";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
+import { ROUTES } from "../routes/AppRoutes";
 
 export default function RequireAuth(): React.ReactElement {
   const dispatch = useDispatch();
   const isAuth = useSelector((state: AnyAction) => state.auth.authData);
   const location = useLocation();
-  const authData = JSON.parse(window.localStorage.getItem("authData")!);
+  const authData = JSON.parse(window.localStorage.getItem(authKey) as string);
 
   useEffect(() => {
     if (authData) {
@@ -25,7 +26,9 @@ export default function RequireAuth(): React.ReactElement {
     // trying to go to when they were redirected. This allows us to send them
     // along to that page after they login, which is a nicer user experience
     // than dropping them off on the home page.
-    return <Navigate to="/login" state={{ from: location }} replace />;
+    return (
+      <Navigate to={ROUTES.PUBLIC.LOGIN} state={{ from: location }} replace />
+    );
   }
 
   return <Outlet />;

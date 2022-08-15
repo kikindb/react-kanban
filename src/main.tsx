@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 
 import "./index.css";
+console.log(import.meta.env.MODE);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

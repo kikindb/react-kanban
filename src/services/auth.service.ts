@@ -1,4 +1,4 @@
-const apiUrl = `${import.meta.env.VITE_APP_API_URL}auth/`;
+const apiUrl = `${import.meta.env.VITE_API_URL}auth/`;
 
 export async function authByPassword(email: string, password: string) {
   try {

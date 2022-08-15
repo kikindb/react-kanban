@@ -11,6 +11,7 @@ const initialAuthState: AuthModel = {
     name: "",
     email: "",
     image: null,
+    admin: false,
     token: "",
   },
 };

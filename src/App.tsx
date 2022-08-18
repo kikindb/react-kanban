@@ -13,7 +13,7 @@ function App() {
       <Navigation />
       {alertData.show && (
         <Alert title={alertData.title} type={alertData.type}>
-          {alertData.body}
+          <p>{alertData.body}</p>
         </Alert>
       )}
 

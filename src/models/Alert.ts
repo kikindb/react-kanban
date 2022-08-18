@@ -1,6 +1,6 @@
 import { AlertType } from "../UI/Alert";
 
-interface AlertData {
+export interface AlertData {
   title: string;
   body: string;
   type: AlertType;

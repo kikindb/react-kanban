@@ -42,6 +42,10 @@ export default function Backlog() {
           show: true,
         })
       );
+      setTimeout(() => {
+        console.log("Timer run");
+        dispatch(alertActions.hideAlert());
+      }, 1500);
     }
   };
 

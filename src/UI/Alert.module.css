@@ -12,6 +12,7 @@
 
 .alertBody {
   text-transform: capitalize;
+  white-space: pre-wrap;
 }
 
 .closeBtn {

@@ -33,7 +33,9 @@ export default function Alert(props: AlertProps) {
 
   return (
     <div className={[styles.Alert, styles[type]].join(" ")}>
-      <header className={styles.alertTitle}>{title}</header>
+      <header className={styles.alertTitle}>
+        <h2>{title}</h2>
+      </header>
       <div className={styles.alertBody}>{children}</div>
       <button className={styles.closeBtn} onClick={closeBtnHandler}>
         &times;

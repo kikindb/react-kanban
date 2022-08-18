@@ -1,6 +1,9 @@
 import React, { useRef } from "react";
 import { useDispatch } from "react-redux";
+import { AlertData } from "../models/Alert";
+import { alertActions } from "../store/alert";
 import { authActions } from "../store/auth";
+import { AlertType } from "../UI/Alert";
 import Card from "../UI/Card";
 
 export default function SignInBox() {
@@ -11,9 +14,34 @@ export default function SignInBox() {
   const passwordConfirmRef = useRef<HTMLInputElement>(null);
   const apiUrl = `${import.meta.env.VITE_API_URL}users`;
 
+  const validateForm = () => {
+    let isValid = true;
+    const alertMsg: AlertData = {
+      title: "Sign In Form Error",
+      body: "",
+      type: AlertType.warning,
+      show: false,
+    };
+
+    if (!nameRef.current?.value) {
+      isValid = false;
+      alertMsg.body += "Name is required\n";
+    }
+    if (passwordConfirmRef.current?.value !== passwordRef.current?.value) {
+      isValid = false;
+      alertMsg.body += "Passwords don't match\n";
+    }
+
+    if (!isValid) {
+      alertMsg.show = true;
+      dispatch(alertActions.setAlert(alertMsg));
+    }
+    return isValid;
+  };
+
   const signInHandler = async (event: React.FormEvent) => {
     event.preventDefault();
-
+    if (!validateForm()) return;
     try {
       const response = await fetch(apiUrl, {
         method: "POST",
@@ -43,7 +71,7 @@ export default function SignInBox() {
         <h1>Sign In</h1>
       </header>
       <div className="form-container">
-        <form onSubmit={signInHandler} autoComplete="new-password">
+        <form onSubmit={signInHandler} autoComplete="off">
           <div className="input-container">
             <label htmlFor="nameInput">Name </label>
             <input
@@ -53,6 +81,9 @@ export default function SignInBox() {
               placeholder="Insert your name"
               ref={nameRef}
               required
+              minLength={2}
+              pattern="^[a-zA-Z]{2,}"
+              title="Must contain at least 2 characters (no numbers)"
             />
           </div>
           <div className="input-container">

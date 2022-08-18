@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { AlertModel } from "../models/Alert";
+import { AlertData, AlertModel } from "../models/Alert";
 import { AlertType } from "../UI/Alert";
 
 const initialAlertState: AlertModel = {
@@ -15,8 +15,11 @@ const alertSlice = createSlice({
   name: "alert",
   initialState: initialAlertState,
   reducers: {
-    setAlert(state, action) {
+    setAlert(state, action: { payload: AlertData; type: string }) {
       state.alertData = action.payload;
+    },
+    hideAlert(state) {
+      state.alertData = initialAlertState.alertData;
     },
   },
 });

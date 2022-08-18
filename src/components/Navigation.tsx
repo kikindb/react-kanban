@@ -6,10 +6,13 @@ import data from "./../../package.json";
 import { AnyAction } from "@reduxjs/toolkit";
 import { authActions } from "./../store/auth";
 import { ROUTES } from "./../routes/AppRoutes";
+import { AuthData } from "../models/Auth";
 
 export default function Navigation() {
   const dispatch = useDispatch();
-  const isAuth = useSelector((state: AnyAction) => state.auth.authData);
+  const isAuth = useSelector(
+    (state: AnyAction) => state.auth.authData
+  ) as AuthData;
 
   const logoutHandler = () => {
     dispatch(authActions.logout());
@@ -32,6 +35,11 @@ export default function Navigation() {
             <li className="nav-item">
               <NavLink to={ROUTES.PRIVATE.BACKLOG}>Backlog</NavLink>
             </li>
+            {isAuth.admin && (
+              <li className="nav-item">
+                <NavLink to={ROUTES.PRIVATE.ADMIN}>Admin</NavLink>
+              </li>
+            )}
             <li className="nav-item">
               <button
                 className="btn-logout"

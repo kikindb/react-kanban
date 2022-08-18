@@ -13,6 +13,8 @@ import NotFound from "./../pages/NotFound";
 import App from "./../App";
 const SignIn = lazy(() => import("./../pages/SignIn"));
 import Loading from "../components/Loading";
+import Admin from "../pages/Admin";
+import RequireAdmin from "../middlewares/RequireAdmin";
 
 export const ROUTES = {
   PUBLIC: {
@@ -22,6 +24,7 @@ export const ROUTES = {
   PRIVATE: {
     HOME: "/",
     BACKLOG: "backlog",
+    ADMIN: "admin",
   },
 };
 
@@ -34,6 +37,9 @@ export default function AppRoutes() {
             <Route element={<RequireAuth />}>
               <Route index element={<Home />} />
               <Route path={ROUTES.PRIVATE.BACKLOG} element={<Backlog />} />
+              <Route element={<RequireAdmin />}>
+                <Route path={ROUTES.PRIVATE.ADMIN} element={<Admin />} />
+              </Route>
             </Route>
 
             <Route path={ROUTES.PUBLIC.LOGIN} element={<Login />} />

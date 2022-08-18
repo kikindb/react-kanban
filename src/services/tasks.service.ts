@@ -11,8 +11,8 @@ export const taskObj: Task = {
 
 const apiUrl = `${import.meta.env.VITE_API_URL}tasks`;
 
-export async function getTasks(token: string) {
-  let tasksArr: Task[];
+export async function getTasks(token: string, signal?: AbortSignal) {
+  let tasksArr: Task[] = [];
 
   try {
     const response = await fetch(apiUrl, {
@@ -21,14 +21,16 @@ export async function getTasks(token: string) {
         "Content-Type": "application/json",
         "x-auth-token": token,
       },
+      signal: signal,
     });
     const data = await response.json();
     tasksArr = data;
   } catch (error) {
     tasksArr = [];
     console.error(error);
+  } finally {
+    return tasksArr;
   }
-  return tasksArr;
 }
 
 export async function saveTask(task: Task, token: string) {

@@ -16,7 +16,7 @@ export default function KanbanBoard(props: KanbanBoardProps) {
   const isAuth = useSelector(
     (state: AnyAction) => state.auth.authData
   ) as AuthData;
-  const [kanbanTasks, setKanbanTasks] = useState<Task[]>(props.kanbanTasks);
+  const { kanbanTasks } = props;
   const [overStatusSelected, setOverStatusSelected] =
     useState<TaskStatus | null>(null);
   const dropClass = "droppable";

@@ -90,7 +90,7 @@ export default function KanbanCard(props: KanbanCardProps) {
       </div>
       <div className="card-footer">
         <p>
-          {data.author} - {data.createdAt}
+          {data.author} - {data.createdAt.slice(0, 10)}
         </p>
       </div>
     </div>

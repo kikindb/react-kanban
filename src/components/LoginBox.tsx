@@ -70,7 +70,7 @@ export default function LoginBox() {
               Log In
             </button>
           </div>
-          <div>
+          <div className="login-footer">
             <Link to="/signin">Sign In</Link>
           </div>
         </form>

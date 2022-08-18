@@ -6,6 +6,7 @@
   background-color: var(--primary-color);
   color: white;
   padding: 0 1rem;
+  position: relative;
 }
 
 .logo-container {
@@ -26,6 +27,7 @@
 
 .nav-list {
   list-style: none;
+  position: relative;
 }
 
 .nav-item {
@@ -36,8 +38,6 @@
 .nav-item a,
 .nav-item button {
   font-family: "Urbanist", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  color: white;
-  font-size: 1.5rem;
   font-weight: normal;
   height: 100%;
   text-decoration: none;
@@ -47,6 +47,12 @@
   transition: all 150ms ease-in-out;
   margin: 0;
   padding: 0;
+}
+
+.nav-item > a,
+.nav-item > button {
+  color: white;
+  font-size: 1.5rem;
 }
 
 .nav-item a.active,
@@ -62,4 +68,46 @@
 .nav-item button:hover {
   text-decoration: underline;
   background-color: transparent;
+}
+
+.nav-item a:hover + .nav-sublist,
+.nav-item a:focus + .nav-sublist,
+.nav-item a:focus-within + .nav-sublist {
+  display: inline-block;
+  opacity: 1;
+  top: calc(100% + 0.125rem);
+  visibility: initial;
+  pointer-events: none;
+}
+
+.nav-sublist {
+  position: absolute;
+  list-style: none;
+  top: 0;
+  opacity: 0;
+  transition: all 150ms ease-in-out;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+.nav-sublist:hover,
+.nav-sublist:focus,
+.nav-sublist:focus-within {
+  opacity: 1;
+  top: calc(100% + 0.1rem);
+  visibility: initial;
+}
+
+.nav-subitem {
+  color: white;
+  background-color: var(--primary-color);
+}
+
+.nav-subitem > a,
+.nav-subitem > button {
+  font-size: 1rem;
+  color: white;
+  background-color: transparent;
+  padding: 0.5rem;
+  width: max-content;
 }

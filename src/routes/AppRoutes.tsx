@@ -15,6 +15,7 @@ const SignIn = lazy(() => import("./../pages/SignIn"));
 import Loading from "../components/Loading";
 import Admin from "../pages/Admin";
 import RequireAdmin from "../middlewares/RequireAdmin";
+import Profile from "../pages/Profile";
 
 export const ROUTES = {
   PUBLIC: {
@@ -25,6 +26,7 @@ export const ROUTES = {
     HOME: "/",
     BACKLOG: "backlog",
     ADMIN: "admin",
+    PROFILE: "profile",
   },
 };
 
@@ -40,6 +42,7 @@ export default function AppRoutes() {
               <Route element={<RequireAdmin />}>
                 <Route path={ROUTES.PRIVATE.ADMIN} element={<Admin />} />
               </Route>
+              <Route path={ROUTES.PRIVATE.PROFILE} element={<Profile />} />
             </Route>
 
             <Route path={ROUTES.PUBLIC.LOGIN} element={<Login />} />

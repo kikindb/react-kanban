@@ -41,17 +41,22 @@ export default function Navigation() {
               </li>
             )}
             <li className="nav-item">
-              <button
-                className="btn-logout"
-                type="button"
-                onClick={logoutHandler}
-                aria-label="Log out"
-              >
-                Log Out
-              </button>
-            </li>
-            <li className="nav-item">
-              <a>{isAuth.name}</a>
+              <a tabIndex={0}>{isAuth.name}</a>
+              <ul className="nav-sublist">
+                <li className="nav-subitem">
+                  <button
+                    className="btn-logout"
+                    type="button"
+                    onClick={logoutHandler}
+                    aria-label="Log out"
+                  >
+                    Log Out
+                  </button>
+                </li>
+                <li className="nav-subitem">
+                  <NavLink to={ROUTES.PRIVATE.PROFILE}>Profile</NavLink>
+                </li>
+              </ul>
             </li>
           </>
         )}

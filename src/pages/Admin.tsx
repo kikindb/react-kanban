@@ -1,37 +1,10 @@
-import { AnyAction } from "@reduxjs/toolkit";
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { AuthData } from "../models/Auth";
-import { User } from "../models/User";
-import { getAllUsers } from "../services/users.service";
+import Loading from "../components/Loading";
+import useFetchUsers from "../hooks/useFetchUsers";
 
 export default function Admin() {
-  const isAuth = useSelector(
-    (state: AnyAction) => state.auth.authData
-  ) as AuthData;
-  const [users, setUsers] = useState<User[]>([]);
+  const { users, isFetching } = useFetchUsers();
 
-  const getUsers = async (signal: AbortSignal) => {
-    try {
-      const usersRes = await getAllUsers(isAuth.token, signal);
-      console.log(usersRes);
-      if (usersRes) {
-        setUsers(usersRes);
-      }
-    } catch (err: any) {
-      console.error(err);
-    }
-  };
-
-  useEffect(() => {
-    const controller = new AbortController();
-    const signal = controller.signal;
-    getUsers(signal);
-    return () => {
-      console.log("Cancelling request...");
-      controller.abort();
-    };
-  }, []);
+  if (isFetching) return <Loading />;
 
   return (
     <div>
@@ -42,12 +15,11 @@ export default function Admin() {
         <section>
           <h3>Users</h3>
           <ul>
-            {users &&
-              users.map((user, idx) => (
-                <li key={user.id}>
-                  {idx + 1}.- {user.name} - {user.email}
-                </li>
-              ))}
+            {users?.map((user, idx) => (
+              <li key={user.id}>
+                {idx + 1}.- {user.name} - {user.email}
+              </li>
+            ))}
           </ul>
         </section>
       </main>

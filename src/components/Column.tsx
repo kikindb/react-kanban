@@ -1,11 +1,11 @@
-import React from "react";
-import "./Column.css";
+import React from 'react';
+import './Column.css';
 
 interface ColumnProps {
   id: string;
   title: string;
   color: string;
-  children?: JSX.Element;
+  children?: React.ReactElement;
 }
 
 export default function Column(props: ColumnProps) {
@@ -14,10 +14,10 @@ export default function Column(props: ColumnProps) {
     <div
       id={id}
       style={{ backgroundColor: color }}
-      className="column-container"
+      className='column-container'
     >
-      <div className="column-title">{title}</div>
-      <div className="column-body">{children}</div>
+      <div className='column-title'>{title}</div>
+      <div className='column-body'>{children}</div>
     </div>
   );
 }

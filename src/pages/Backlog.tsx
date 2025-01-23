@@ -1,12 +1,12 @@
-import { AnyAction } from "@reduxjs/toolkit";
-import React, { useEffect, useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Task, TaskStatus } from "../models/Task";
-import { saveTask } from "../services/tasks.service";
-import Card from "../UI/Card";
-import { Helmet } from "react-helmet";
-import { alertActions } from "../store/alert";
-import { AlertType } from "../UI/Alert";
+import { AnyAction } from '@reduxjs/toolkit';
+import React, { useEffect, useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Task, TaskStatus } from '@/models/Task';
+import { saveTask } from '@/services/tasks.service';
+import Card from '@/UI/Card';
+import { Helmet } from 'react-helmet';
+import { alertActions } from '@/store/alert';
+import { AlertType } from '@/UI/Alert';
 
 export default function Backlog() {
   const dispatch = useDispatch();
@@ -25,7 +25,7 @@ export default function Backlog() {
       selectStatus.current
     ) {
       const task: Task = {
-        id: "",
+        id: '',
         title: inputTitle.current.value,
         body: inputBody.current.value,
         author: inputAuthor.current.value,
@@ -36,14 +36,14 @@ export default function Backlog() {
       clearForm();
       dispatch(
         alertActions.setAlert({
-          title: "Task Created",
-          body: "Your task was created successfully",
+          title: 'Task Created',
+          body: 'Your task was created successfully',
           type: AlertType.info,
           show: true,
         })
       );
       setTimeout(() => {
-        console.log("Timer run");
+        console.log('Timer run');
         dispatch(alertActions.hideAlert());
       }, 1500);
     }
@@ -56,8 +56,8 @@ export default function Backlog() {
       inputAuthor.current &&
       selectStatus.current
     ) {
-      inputTitle.current.value = "";
-      inputBody.current.value = "";
+      inputTitle.current.value = '';
+      inputBody.current.value = '';
       focusFirstInput();
     }
   };
@@ -76,51 +76,51 @@ export default function Backlog() {
         <title>Kanban App - Backlog</title>
       </Helmet>
       <Card>
-        <div className="backlog-form-container">
+        <div className='backlog-form-container'>
           <form onSubmit={submitHandler}>
             <h2>Create new Task</h2>
-            <div className="input-container">
-              <label htmlFor="input-title">Title </label>
+            <div className='input-container'>
+              <label htmlFor='input-title'>Title </label>
               <input
-                type="text"
-                name="input-title"
-                id="input-title"
+                type='text'
+                name='input-title'
+                id='input-title'
                 ref={inputTitle}
                 required
                 minLength={3}
-                placeholder="Insert task title"
+                placeholder='Insert task title'
               />
             </div>
-            <div className="input-container">
-              <label htmlFor="input-body">Body </label>
+            <div className='input-container'>
+              <label htmlFor='input-body'>Body </label>
               <textarea
-                name="input-container"
-                id="input-body"
+                name='input-container'
+                id='input-body'
                 ref={inputBody}
-                placeholder="Insert the body of the task"
+                placeholder='Insert the body of the task'
                 minLength={5}
                 required
               ></textarea>
             </div>
-            <div className="input-container">
-              <label htmlFor="input-author">Author </label>
+            <div className='input-container'>
+              <label htmlFor='input-author'>Author </label>
               <input
-                type="text"
-                name="input-author"
-                id="input-author"
+                type='text'
+                name='input-author'
+                id='input-author'
                 ref={inputAuthor}
                 defaultValue={authData.name}
                 minLength={3}
                 required
-                placeholder="Insert task author"
+                placeholder='Insert task author'
                 disabled
               />
             </div>
-            <div className="input-container">
-              <label htmlFor="select-status">Status </label>
+            <div className='input-container'>
+              <label htmlFor='select-status'>Status </label>
               <select
-                name="select-status"
-                id="select-status"
+                name='select-status'
+                id='select-status'
                 ref={selectStatus}
               >
                 <option value={TaskStatus.todo}>To Do</option>
@@ -128,8 +128,8 @@ export default function Backlog() {
                 <option value={TaskStatus.done}>Done</option>
               </select>
             </div>
-            <div className="btn-container">
-              <button type="submit">Add Task</button>
+            <div className='btn-container'>
+              <button type='submit'>Add Task</button>
             </div>
           </form>
         </div>

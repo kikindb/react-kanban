@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { Task } from "../models/Task";
-import { getTasks } from "../services/tasks.service";
-import { AnyAction } from "@reduxjs/toolkit";
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { Task } from '@/models/Task';
+import { getTasks } from '@/services/tasks.service';
+import { AnyAction } from '@reduxjs/toolkit';
 
 export default function useTasks(): [Task[], boolean] {
   const authData = useSelector((state: AnyAction) => state.auth.authData);
@@ -11,7 +11,7 @@ export default function useTasks(): [Task[], boolean] {
 
   const getData = async (signal: AbortSignal) => {
     const res = await getTasks(authData.token, signal);
-    console.log("useTasks()");
+    console.log('useTasks()');
     console.log(res);
     setTasksList(res);
     setLoading(false);
@@ -24,7 +24,7 @@ export default function useTasks(): [Task[], boolean] {
     getData(signal);
 
     return () => {
-      console.log("Cancelling request...");
+      console.log('Cancelling request...');
       controller.abort();
     };
   }, []);

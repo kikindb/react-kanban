@@ -1,12 +1,12 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { alertActions } from "../store/alert";
-import styles from "./Alert.module.css";
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { alertActions } from '@/store/alert';
+import styles from './Alert.module.css';
 
 export enum AlertType {
-  info = "info",
-  warning = "warning",
-  danger = "danger",
+  info = 'info',
+  warning = 'warning',
+  danger = 'danger',
 }
 
 interface AlertProps {
@@ -23,8 +23,8 @@ export default function Alert(props: AlertProps) {
     event.preventDefault();
     dispatch(
       alertActions.setAlert({
-        title: "",
-        body: "",
+        title: '',
+        body: '',
         type: AlertType.info,
         show: false,
       })
@@ -32,7 +32,7 @@ export default function Alert(props: AlertProps) {
   };
 
   return (
-    <div className={[styles.Alert, styles[type]].join(" ")}>
+    <div className={[styles.Alert, styles[type]].join(' ')}>
       <header className={styles.alertTitle}>
         <h2>{title}</h2>
       </header>

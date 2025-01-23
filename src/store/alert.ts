@@ -1,18 +1,18 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { AlertData, AlertModel } from "../models/Alert";
-import { AlertType } from "../UI/Alert";
+import { createSlice } from '@reduxjs/toolkit';
+import { AlertData, AlertModel } from '@/models/Alert';
+import { AlertType } from '@/UI/Alert';
 
 const initialAlertState: AlertModel = {
   alertData: {
-    title: "",
-    body: "",
+    title: '',
+    body: '',
     type: AlertType.info,
     show: false,
   },
 };
 
 const alertSlice = createSlice({
-  name: "alert",
+  name: 'alert',
   initialState: initialAlertState,
   reducers: {
     setAlert(state, action: { payload: AlertData; type: string }) {

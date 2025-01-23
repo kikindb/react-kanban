@@ -1,5 +1,5 @@
-import Loading from "../components/Loading";
-import useFetchUsers from "../hooks/useFetchUsers";
+import Loading from '@/components/Loading/Loading';
+import useFetchUsers from '@/hooks/useFetchUsers';
 
 export default function Admin() {
   const { users, isFetching } = useFetchUsers();

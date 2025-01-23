@@ -1,4 +1,4 @@
-import { AlertType } from "../UI/Alert";
+import { AlertType } from '@/UI/Alert';
 
 export interface AlertData {
   title: string;

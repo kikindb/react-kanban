@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { getAllUsers } from "../services/users.service";
-import { AuthData } from "../models/Auth";
-import { AnyAction } from "@reduxjs/toolkit";
-import { User } from "./../models/User";
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { getAllUsers } from '@/services/users.service';
+import { AuthData } from '@/models/Auth';
+import { AnyAction } from '@reduxjs/toolkit';
+import { User } from '@/models/User';
 
 const useFetchUsers = () => {
   const isAuth = useSelector(

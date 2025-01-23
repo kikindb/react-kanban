@@ -1,10 +1,10 @@
-import React, { useRef } from "react";
-import { useDispatch } from "react-redux";
-import { AlertData } from "../models/Alert";
-import { alertActions } from "../store/alert";
-import { authActions } from "../store/auth";
-import { AlertType } from "../UI/Alert";
-import Card from "../UI/Card";
+import React, { useRef } from 'react';
+import { useDispatch } from 'react-redux';
+import { AlertData } from '@/models/Alert';
+import { alertActions } from '@/store/alert';
+import { authActions } from '@/store/auth';
+import { AlertType } from '@/UI/Alert';
+import Card from '@/UI/Card';
 
 export default function SignInBox() {
   const dispatch = useDispatch();
@@ -17,15 +17,15 @@ export default function SignInBox() {
   const validateForm = () => {
     let isValid = true;
     const alertMsg: AlertData = {
-      title: "Sign In Form Error",
-      body: "",
+      title: 'Sign In Form Error',
+      body: '',
       type: AlertType.warning,
       show: false,
     };
 
     if (!nameRef.current?.value) {
       isValid = false;
-      alertMsg.body += "Name is required\n";
+      alertMsg.body += 'Name is required\n';
     }
     if (passwordConfirmRef.current?.value !== passwordRef.current?.value) {
       isValid = false;
@@ -44,9 +44,9 @@ export default function SignInBox() {
     if (!validateForm()) return;
     try {
       const response = await fetch(apiUrl, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           name: nameRef.current?.value,
@@ -56,7 +56,7 @@ export default function SignInBox() {
       });
       const data = await response.json();
       data.image = null;
-      data.token = response.headers.get("x-auth-token");
+      data.token = response.headers.get('x-auth-token');
       dispatch(authActions.login(data));
 
       console.log(data);
@@ -70,59 +70,59 @@ export default function SignInBox() {
       <header>
         <h1>Sign In</h1>
       </header>
-      <div className="form-container">
-        <form onSubmit={signInHandler} autoComplete="off">
-          <div className="input-container">
-            <label htmlFor="nameInput">Name </label>
+      <div className='form-container'>
+        <form onSubmit={signInHandler} autoComplete='off'>
+          <div className='input-container'>
+            <label htmlFor='nameInput'>Name </label>
             <input
-              type="text"
-              id="nameInput"
-              data-testid="nameInput"
-              placeholder="Insert your name"
+              type='text'
+              id='nameInput'
+              data-testid='nameInput'
+              placeholder='Insert your name'
               ref={nameRef}
               required
               minLength={2}
-              pattern="^[a-zA-Z]{2,}"
-              title="Must contain at least 2 characters (no numbers)"
+              pattern='^[a-zA-Z]{2,}'
+              title='Must contain at least 2 characters (no numbers)'
             />
           </div>
-          <div className="input-container">
-            <label htmlFor="usernameInput">Email </label>
+          <div className='input-container'>
+            <label htmlFor='usernameInput'>Email </label>
             <input
-              type="email"
-              id="usernameInput"
-              data-testid="usernameInput"
-              placeholder="Insert your email"
+              type='email'
+              id='usernameInput'
+              data-testid='usernameInput'
+              placeholder='Insert your email'
               ref={emailRef}
               required
             />
           </div>
-          <div className="input-container">
-            <label htmlFor="passwordInput">Password </label>
+          <div className='input-container'>
+            <label htmlFor='passwordInput'>Password </label>
             <input
-              type="password"
-              id="passwordInput"
-              data-testid="passwordInput"
-              placeholder="Insert your password"
+              type='password'
+              id='passwordInput'
+              data-testid='passwordInput'
+              placeholder='Insert your password'
               ref={passwordRef}
               minLength={5}
               required
             />
           </div>
-          <div className="input-container">
-            <label htmlFor="passwordConfirmInput">Confirm Password </label>
+          <div className='input-container'>
+            <label htmlFor='passwordConfirmInput'>Confirm Password </label>
             <input
-              type="password"
-              id="passwordConfirmInput"
-              data-testid="passwordConfirmInput"
-              placeholder="Confirm your password"
+              type='password'
+              id='passwordConfirmInput'
+              data-testid='passwordConfirmInput'
+              placeholder='Confirm your password'
               ref={passwordConfirmRef}
               minLength={5}
               required
             />
           </div>
-          <div className="submit-container">
-            <button type="submit" data-testid="submitButton">
+          <div className='submit-container'>
+            <button type='submit' data-testid='submitButton'>
               Sign In
             </button>
           </div>

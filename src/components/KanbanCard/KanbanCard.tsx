@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from "react";
-import { Task } from "../models/Task";
-import "./KanbanCard.css";
+import React, { useState, useRef, useEffect } from 'react';
+import { Task } from '@/models/Task';
+import './KanbanCard.css';
 
 interface KanbanCardProps {
   data: Task;
@@ -26,13 +26,13 @@ export default function KanbanCard(props: KanbanCardProps) {
   const [cardValues, setCardValues] = useState<cardVals>(
     initialCardValuesState
   );
-  const [cardTransform, setCardTransform] = useState<string>("");
+  const [cardTransform, setCardTransform] = useState<string>('');
 
   const onDragStartHandler = (event: React.DragEvent<HTMLDivElement>) => {
-    event.dataTransfer!.setData("text/plain", data.id);
-    event.dataTransfer!.effectAllowed = "move";
+    event.dataTransfer!.setData('text/plain', data.id);
+    event.dataTransfer!.effectAllowed = 'move';
     setTimeout(() => {
-      currentCard.current?.classList.add("hide");
+      currentCard.current?.classList.add('hide');
     }, 0);
   };
 
@@ -53,11 +53,11 @@ export default function KanbanCard(props: KanbanCardProps) {
   };
 
   const leaveHandler = () => {
-    setCardTransform("");
+    setCardTransform('');
   };
 
   const onDragEndHandler = (event: React.DragEvent<HTMLDivElement>) => {
-    currentCard.current?.classList.remove("hide");
+    currentCard.current?.classList.remove('hide');
   };
 
   useEffect(() => {
@@ -73,7 +73,7 @@ export default function KanbanCard(props: KanbanCardProps) {
   return (
     <div
       id={data.id}
-      className="card-container"
+      className='card-container'
       onDragStart={onDragStartHandler}
       onDragEnd={onDragEndHandler}
       draggable
@@ -82,13 +82,13 @@ export default function KanbanCard(props: KanbanCardProps) {
       ref={currentCard}
       style={{ transform: cardTransform }}
     >
-      <div className="card-title">
+      <div className='card-title'>
         <h2>{data.title}</h2>
       </div>
-      <div className="card-body">
+      <div className='card-body'>
         <p>{data.body}</p>
       </div>
-      <div className="card-footer">
+      <div className='card-footer'>
         <p>
           {data.author} - {data.createdAt.slice(0, 10)}
         </p>

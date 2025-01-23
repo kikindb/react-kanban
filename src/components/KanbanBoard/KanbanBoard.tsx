@@ -5,8 +5,8 @@ import './KanbanBoard.css';
 import { Task, TaskStatus } from '@/models/Task';
 import Column from '@/components/Column/Column';
 import { patchTask } from '@/services/tasks.service';
-import { AnyAction } from '@reduxjs/toolkit';
 import { AuthData } from '@/models/Auth';
+import { RootState } from '@/store';
 
 interface KanbanBoardProps {
   kanbanTasks: Task[];
@@ -14,7 +14,7 @@ interface KanbanBoardProps {
 
 export default function KanbanBoard(props: KanbanBoardProps) {
   const isAuth = useSelector(
-    (state: AnyAction) => state.auth.authData
+    (state: RootState) => state.auth.authData
   ) as AuthData;
   const { kanbanTasks } = props;
   const [overStatusSelected, setOverStatusSelected] =

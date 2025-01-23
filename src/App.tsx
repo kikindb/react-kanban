@@ -3,10 +3,10 @@ import Navigation from '@/components/Navigation/Navigation';
 import { Outlet } from 'react-router-dom';
 import Alert from '@/UI/Alert';
 import { useSelector } from 'react-redux';
-import { AnyAction } from '@reduxjs/toolkit';
+import { RootState } from './store';
 
 function App() {
-  const alertData = useSelector((state: AnyAction) => state.alert.alertData);
+  const alertData = useSelector((state: RootState) => state.alert.alertData);
   console.log(alertData);
   return (
     <div className='App'>

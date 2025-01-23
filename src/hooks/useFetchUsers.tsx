@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { getAllUsers } from '@/services/users.service';
 import { AuthData } from '@/models/Auth';
-import { AnyAction } from '@reduxjs/toolkit';
 import { User } from '@/models/User';
+import { RootState } from '@/store';
 
 const useFetchUsers = () => {
   const isAuth = useSelector(
-    (state: AnyAction) => state.auth.authData
+    (state: RootState) => state.auth.authData
   ) as AuthData;
   const [users, setUsers] = useState<User[]>([]);
   const [isFetching, setIsFetching] = useState(true);

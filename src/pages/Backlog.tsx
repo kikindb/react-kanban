@@ -1,4 +1,3 @@
-import { AnyAction } from '@reduxjs/toolkit';
 import React, { useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Task, TaskStatus } from '@/models/Task';
@@ -7,10 +6,11 @@ import Card from '@/UI/Card';
 import { Helmet } from 'react-helmet';
 import { alertActions } from '@/store/alert';
 import { AlertType } from '@/UI/Alert';
+import { RootState } from '@/store';
 
 export default function Backlog() {
   const dispatch = useDispatch();
-  const authData = useSelector((state: AnyAction) => state.auth.authData);
+  const authData = useSelector((state: RootState) => state.auth.authData);
   const inputTitle = useRef<HTMLInputElement>(null);
   const inputBody = useRef<HTMLTextAreaElement>(null);
   const inputAuthor = useRef<HTMLInputElement>(null);

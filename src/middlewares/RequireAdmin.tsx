@@ -1,13 +1,13 @@
 import React from 'react';
-import { AnyAction } from '@reduxjs/toolkit';
 import { useSelector } from 'react-redux';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { ROUTES } from '@/routes/AppRoutes';
 import { AuthData } from '@/models/Auth';
+import { RootState } from '@/store';
 
 export default function RequireAdmin(): React.ReactElement {
   const isAuth = useSelector(
-    (state: AnyAction) => state.auth.authData
+    (state: RootState) => state.auth.authData
   ) as AuthData;
   const location = useLocation();
 

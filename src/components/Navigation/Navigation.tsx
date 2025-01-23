@@ -3,15 +3,15 @@ import { NavLink } from 'react-router-dom';
 import './Navigation.css';
 import LogoSVG from '@/components/Logo/Logo';
 import data from './../../../package.json';
-import { AnyAction } from '@reduxjs/toolkit';
 import { authActions } from '@/store/auth';
 import { ROUTES } from '@/routes/AppRoutes';
 import { AuthData } from '@/models/Auth';
+import { RootState } from '@/store';
 
 export default function Navigation() {
   const dispatch = useDispatch();
   const isAuth = useSelector(
-    (state: AnyAction) => state.auth.authData
+    (state: RootState) => state.auth.authData
   ) as AuthData;
 
   const logoutHandler = () => {

@@ -15,7 +15,7 @@
   border-radius: 50%;
   width: 100px;
   height: 100px;
-  background-image: url("./../assets/img/alternate-trash.svg");
+  background-image: url('./../../assets/img/alternate-trash.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 50px;

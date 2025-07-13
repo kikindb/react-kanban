@@ -70,7 +70,7 @@ pipeline {
         nexusArtifactUploader (
           nexusVersion: 'nexus3',
           protocol: 'http',
-          nexusUrl: '192.168.56.15:8081:8081',
+          nexusUrl: '192.168.56.15:8081',
           groupId: 'QA',
           version: "${env.PACKAGE_VERSION}",
           repository: 'ui-apps',

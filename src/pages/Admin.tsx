@@ -22,6 +22,8 @@ export default function Admin() {
             ))}
           </ul>
         </section>
+        <section>Manage permissions</section>
+        <button type='button'>add permissions</button>
       </main>
     </div>
   );

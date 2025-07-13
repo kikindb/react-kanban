@@ -1,7 +1,7 @@
 {
   "name": "kikindb.kanban",
   "homepage": "https://kikindb.github.io/react-kanban/",
-  "private": true,
+  "private": false,
   "version": "0.4.1",
   "type": "module",
   "scripts": {

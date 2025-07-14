@@ -2,7 +2,7 @@
   "name": "kikindb.kanban",
   "homepage": "https://kikindb.github.io/react-kanban/",
   "private": false,
-  "version": "0.4.3",
+  "version": "0.4.4",
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",
@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "2.5.0",
+    "audit": "^0.0.6",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "react-helmet": "6.1.0",

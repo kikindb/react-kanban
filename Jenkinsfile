@@ -13,7 +13,11 @@ pipeline {
 
     stage('Checkout') {
       steps {
-        git url: 'https://github.com/kikindb/react-kanban.git', branch: 'main'
+        checkout scm
+        script {
+          env.BRANCH_NAME = env.GIT_BRANCH?.replaceAll(/^origin\//, '') ?: 'unknown'
+          echo "Current branch: ${env.BRANCH_NAME}"
+        }
       }
     }
 
@@ -58,10 +62,26 @@ pipeline {
 
     stage('Package Artifact') {
       steps {
-        sh '''
-          cd dist
-          zip -r ../react-kanban-${PACKAGE_VERSION}.zip .
-        '''
+        script {
+          def artifactName = "${env.BRANCH_NAME}-react-kanban-${env.PACKAGE_VERSION}.zip"
+          env.ARTIFACT_NAME = artifactName
+          sh "cd dist && zip -r ../${artifactName} ."
+        }
+      }
+    }
+
+    stage('Determine Nexus Group ID') {
+      steps {
+        script {
+          def groupId = 'test' // default
+          if (env.BRANCH_NAME == 'main') {
+            groupId = 'prod'
+          } else if (env.BRANCH_NAME == 'dev') {
+            groupId = 'qa'
+          }
+          env.NEXUS_GROUP_ID = groupId
+          echo "Using Nexus groupId: ${env.NEXUS_GROUP_ID}"
+        }
       }
     }
 
@@ -71,14 +91,14 @@ pipeline {
           nexusVersion: 'nexus3',
           protocol: 'http',
           nexusUrl: '192.168.56.15:8081',
-          groupId: 'QA',
+          groupId: "${env.NEXUS_GROUP_ID}",
           version: "${env.PACKAGE_VERSION}",
           repository: 'ui-apps',
           credentialsId: 'nexuslogin',
           artifacts: [
             [
               artifactId: "react-kanban",
-              file: "react-kanban-${env.PACKAGE_VERSION}.zip",
+              file: "${env.ARTIFACT_NAME}",
               type: 'zip'
             ]
           ]

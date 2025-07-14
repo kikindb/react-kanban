@@ -60,8 +60,7 @@ pipeline {
       steps {
         sh '''
           cd dist
-          echo "feat1-react-kanban-${env.PACKAGE_VERSION}.zip"
-          zip -r ../feat1-react-kanban-${env.PACKAGE_VERSION}.zip .
+          zip -r ../react-kanban-${env.PACKAGE_VERSION}.zip .
         '''
       }
     }
@@ -79,7 +78,7 @@ pipeline {
           artifacts: [
             [
               artifactId: "react-kanban",
-              file: "feat1-react-kanban-${env.PACKAGE_VERSION}.zip",
+              file: "react-kanban-${env.PACKAGE_VERSION}.zip",
               type: 'zip'
             ]
           ]

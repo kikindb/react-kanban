@@ -13,7 +13,6 @@ pipeline {
 
     stage('Checkout') {
       steps {
-        // This will let Jenkins know the actual branch
         checkout scm
         script {
           env.BRANCH_NAME = env.GIT_BRANCH?.replaceAll(/^origin\//, '') ?: 'unknown'
@@ -71,19 +70,34 @@ pipeline {
       }
     }
 
+    stage('Determine Nexus Group ID') {
+      steps {
+        script {
+          def groupId = 'test' // default
+          if (env.BRANCH_NAME == 'main') {
+            groupId = 'prod'
+          } else if (env.BRANCH_NAME == 'dev') {
+            groupId = 'qa'
+          }
+          env.NEXUS_GROUP_ID = groupId
+          echo "Using Nexus groupId: ${env.NEXUS_GROUP_ID}"
+        }
+      }
+    }
+
     stage('Upload to Nexus') {
       steps {
         nexusArtifactUploader (
           nexusVersion: 'nexus3',
           protocol: 'http',
           nexusUrl: '192.168.56.15:8081',
-          groupId: 'test',
+          groupId: "${env.NEXUS_GROUP_ID}",
           version: "${env.PACKAGE_VERSION}",
           repository: 'ui-apps',
           credentialsId: 'nexuslogin',
           artifacts: [
             [
-              artifactId: "${env.BRANCH_NAME}-react-kanban-${env.PACKAGE_VERSION}",
+              artifactId: "react-kanban",
               file: "${env.ARTIFACT_NAME}",
               type: 'zip'
             ]

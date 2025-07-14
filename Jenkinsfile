@@ -60,6 +60,7 @@ pipeline {
       steps {
         sh '''
           cd dist
+          echo "${BRANCH_NAME}-react-kanban-${env.PACKAGE_VERSION}.zip"
           zip -r ../${BRANCH_NAME}-react-kanban-${env.PACKAGE_VERSION}.zip .
         '''
       }

@@ -78,7 +78,7 @@ pipeline {
           artifacts: [
             [
               artifactId: "react-kanban",
-              file: "${BRANCH_NAME}-react-kanban-${env.PACKAGE_VERSION}.zip",
+              file: "${env.BRANCH_NAME}-react-kanban-${env.PACKAGE_VERSION}.zip",
               type: 'zip'
             ]
           ]

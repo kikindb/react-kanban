@@ -105,6 +105,26 @@ pipeline {
         )
       }
     }
+
+    stage('Deploy to Test') {
+      when {
+        branch 'dev'
+      }
+      steps {
+        echo "Deploying to test environmnet..."
+        // Example: sh './deploy-test.sh' or helm install/upgrade
+      }
+    }
+
+    stage('Deploy to Prod') {
+      when {
+        branch 'main'
+      }
+      steps {
+        echo "Deploying to production..."
+        // Example: sh './deploy-prod.sh' or helm install/upgrade
+      }
+    }
   }
 
   post {

@@ -83,7 +83,7 @@ pipeline {
           credentialsId: 'nexuslogin',
           artifacts: [
             [
-              artifactId: "react-kanban",
+              artifactId: "${env.BRANCH_NAME}-react-kanban-${env.PACKAGE_VERSION}",
               file: "${env.ARTIFACT_NAME}",
               type: 'zip'
             ]

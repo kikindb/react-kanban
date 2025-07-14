@@ -77,7 +77,7 @@ pipeline {
           nexusVersion: 'nexus3',
           protocol: 'http',
           nexusUrl: '192.168.56.15:8081',
-          groupId: 'QA',
+          groupId: 'test',
           version: "${env.PACKAGE_VERSION}",
           repository: 'ui-apps',
           credentialsId: 'nexuslogin',

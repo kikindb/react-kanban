@@ -54,7 +54,21 @@ pipeline {
       }
     }
 
-    stage('Build') {
+    stage('Build Dev') {
+      when {
+        not {
+          branch 'main'
+        }
+      }
+      steps {
+        sh 'npm run build'
+      }
+    }
+
+    stage('Build Prod') {
+      when {
+        branch 'main'
+      }
       steps {
         sh 'npm run build'
       }

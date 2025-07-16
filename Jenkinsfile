@@ -61,7 +61,7 @@ pipeline {
         }
       }
       steps {
-        sh 'npm run build'
+        sh 'npm run build:dev'
       }
     }
 

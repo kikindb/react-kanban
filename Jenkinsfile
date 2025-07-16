@@ -126,7 +126,7 @@ pipeline {
       }
       steps {
         echo "Deploying to test environment using Jenkins artifact..."
-        sh "unzip -o ${env.ARTIFACT_NAME} -d /var/www/react-kanban/"
+        sh "sudo unzip -o ${env.ARTIFACT_NAME} -d /var/www/react-kanban/"
       }
     }
 

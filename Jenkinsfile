@@ -125,8 +125,8 @@ pipeline {
         branch 'dev'
       }
       steps {
-        echo "Deploying to test environmnet..."
-        // Example: sh './deploy-test.sh' or helm install/upgrade
+        echo "Deploying to test environment using Jenkins artifact..."
+        sh "unzip -o ${env.ARTIFACT_NAME} -d /var/www/react-kanban/"
       }
     }
 

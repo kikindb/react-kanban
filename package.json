@@ -2,9 +2,10 @@
   "name": "kikindb.kanban",
   "homepage": "https://kikindb.github.io/react-kanban/",
   "private": false,
-  "version": "0.4.4",
+  "version": "0.4.5",
   "type": "module",
   "scripts": {
+    "build:dev": "vite build --mode development",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "dev": "vite",

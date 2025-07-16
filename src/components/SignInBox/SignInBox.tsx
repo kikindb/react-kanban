@@ -12,7 +12,7 @@ export default function SignInBox() {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const passwordConfirmRef = useRef<HTMLInputElement>(null);
-  const apiUrl = `${import.meta.env.VITE_API_URL}users`;
+  const apiUrl = `${import.meta.env.VITE_API_URL}user`;
 
   const validateForm = () => {
     let isValid = true;

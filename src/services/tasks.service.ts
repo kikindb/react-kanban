@@ -9,7 +9,7 @@ export const taskObj: Task = {
   status: TaskStatus.done,
 };
 
-const apiUrl = `${import.meta.env.VITE_API_URL}tasks`;
+const apiUrl = `${import.meta.env.VITE_API_URL}task`;
 
 export async function getTasks(token: string, signal?: AbortSignal) {
   let tasksArr: Task[] = [];

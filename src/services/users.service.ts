@@ -1,6 +1,6 @@
 import { User } from '@/models/User';
 import { userAdapter } from '@/adapters/user.adapter';
-const apiUrl = `${import.meta.env.VITE_API_URL}users`;
+const apiUrl = `${import.meta.env.VITE_API_URL}user`;
 
 export async function getAllUsers(token: string, signal?: AbortSignal) {
   let userData: User[] = [];

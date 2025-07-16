@@ -14,6 +14,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Jenkinsfile
 - Development build
 
+### Fixed
+
+- Endpoints of services changed to singular version
+
 ## [0.4.1] - 2025-01-23
 
 ### Fixed

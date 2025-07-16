@@ -127,10 +127,7 @@ pipeline {
       steps {
         echo "Deploying to test environment using Jenkins artifact..."
         sh '''
-          mkdir -p /tmp/deploy-react
-          unzip -o ${ARTIFACT_NAME} -d /tmp/deploy-react/
-          sudo rm -rf /var/www/react-kanban/*
-          sudo cp -r /tmp/deploy-react/* /var/www/react-kanban/
+          sudo cp -r /dist/* /var/www/react-kanban/
         '''
       }
     }
